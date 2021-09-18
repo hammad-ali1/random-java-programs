@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-public class Circle extends JPanel{
+public class Rays extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         int width = getWidth();
