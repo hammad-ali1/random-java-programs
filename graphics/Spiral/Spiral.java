@@ -13,27 +13,27 @@ public class Spiral extends JPanel{
         int pointX = INITIAL_X;
         int pointY = INITIAL_Y;
         int diameter = (height  - INITIAL_Y) < (width - INITIAL_X )? (height  - INITIAL_Y): (width - INITIAL_X);  //diameter of the first semicircle
-        int rotation = 0; 
         final int GAP = 40;  //difference of diameter between two consecutive semi-circle
         int cntr = 0;       //counts number of semicircles drawn
+        Random random = new Random();
+        int R, G, B;
+        Color c;
+        int incrementAngle = 30, startAngle = 0;
         while(diameter > 0){ 
-            Random random = new Random();
-            int R, G, B;
-            Color c;
-            while(Math.abs(rotation) <= 180){    
-                int incrementAngle = 30;
-                rotation = 0;
+            startAngle = 0;
+            while(Math.abs(startAngle) < 180){ //draws semi-circle filled with random colors    
                 R = random.nextInt(255); G = random.nextInt(255); B = random.nextInt(255);
                 c = new Color(R, G, B);
-                g.setColor(c);
-                g.fillArc(pointX, pointY, diameter, diameter, rotation, incrementAngle); //draws semi-circle
-                rotation += incrementAngle;
+                g.setColor(c);  //assigning color
+                g.fillArc(pointX, pointY, diameter, diameter, startAngle, incrementAngle); //draws a part of semi-circle
+                startAngle += incrementAngle;
             }
-            cntr++;
+            cntr++;     //counting number of semi-circle drawn
             pointY += GAP/2;    //setting y co-ordinate for the next semi-circle
             pointX += cntr%2 == 0 ? 0 : GAP;   //setting x-co-ordinate of next semi-circle
             diameter -= GAP;    //decrements diameter of next semicircle
-            rotation *= -1;     //setting rotation of next semi-circle in clockwise direction
+            incrementAngle *= -1;     //setting startAngle and incrementAngle of next semi-circle in clockwise direction
+            startAngle *= -1;
         }
     }    
 }
